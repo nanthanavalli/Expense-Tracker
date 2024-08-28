@@ -1,18 +1,22 @@
-import './ExpenseItem.css';
+import "./ExpenseItem.css";
 
-function ExpenseItem(){
-    const expenseDate = new Date(2024, 8, 26);
-    const expenseTitle = 'Food';
-    const expenseAmount = 70;
-    return(
-        <div className='expense-item'>
-        <div>{expenseDate.toISOString()}</div>
-        <div className='expense-item__description '>
-            <h2>{expenseTitle}</h2>
-            <div className='expense-item__price'>${expenseAmount}</div>
-        </div>
-        </div>
-    );
+function ExpenseItem(props) {
+  const month = props.expense.date.toLocaleString("en-IN", { month: 'long' });
+  const day= props.expense.date.toLocaleString("en-IN", { day: '2-digit' });
+  const year = props.expense.date.getFullYear();
+  return (
+    <div className="expense-item">
+      <div className="expense-date">
+        <div className="expense-date__month">{month}</div>
+        <div className="expense-date__year">{year}</div>
+        <div className="expense-date__day">{day}</div>
+      </div>
+      <div className="expense-item__description ">
+        <h2>{props.expense.title}</h2>
+        <div className="expense-item__price">${props.expense.amount}</div>
+      </div>
+    </div>
+  );
 }
 
 export default ExpenseItem;
